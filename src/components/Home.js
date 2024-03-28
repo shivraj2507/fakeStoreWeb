@@ -9,26 +9,22 @@ import { products } from "../data";
 const Home = () => {
   const dispatch = useDispatch();
 
-  const fetchData = useCallback(async () => {
-    dispatch(setLoading());
-    try {
-      // const response = await axios.get(
-      //   "https://api.escuelajs.co/api/v1/products"
-      // );
-
-      dispatch(setProductData(products));
-    } catch (error) {
-      dispatch(setProductData(products));
-    }
-    dispatch(setLoading());
-  }, []);
   useEffect(() => {
-    const fetchDataAndUpdateProducts = async () => {
-      await fetchData();
-    };
+    const fetchData = async () => {
+      dispatch(setLoading());
+      try {
+        // const response = await axios.get(
+        //   "https://api.escuelajs.co/api/v1/products"
+        // );
 
-    fetchDataAndUpdateProducts();
-  }, [fetchData]);
+        dispatch(setProductData(products));
+      } catch (error) {
+        dispatch(setProductData(products));
+      }
+      dispatch(setLoading());
+    };
+    fetchData();
+  }, []);
   const fakeStore = useSelector((state) => state.product.filterData);
   const { loading } = useSelector((state) => state.product);
 
