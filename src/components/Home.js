@@ -22,9 +22,13 @@ const Home = () => {
     }
     dispatch(setLoading());
   };
-  useEffect(() => {
-    fetchData();
-  }, []);
+ useEffect(() => {
+   const fetchDataAndUpdateProducts = async () => {
+     await fetchData();
+   };
+
+   fetchDataAndUpdateProducts();
+ }, [fetchData]);
   const fakeStore = useSelector((state) => state.product.filterData);
   const { loading } = useSelector((state) => state.product);
 
