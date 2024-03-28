@@ -8,12 +8,6 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addTocart: (state, action) => {
-      if (state.addCard.filter((items) => items.id === action.payload)) {
-        return;
-      }
-      state.addCard.push(action.payload);
-    },
-    addTocart: (state, action) => {
       const isItemInCart = state.addCard.some(
         (item) => item.id === action.payload.id
       );
