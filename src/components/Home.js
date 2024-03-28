@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Card from "./Card";
 import Spinner from "./Spinner";
-import axios from "axios";
 
 import { setProductData, setLoading } from "../redux/slice/productSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,11 +12,11 @@ const Home = () => {
   const fetchData = async () => {
     dispatch(setLoading());
     try {
-      const response = await axios.get(
-        "https://api.escuelajs.co/api/v1/products"
-      );
+      // const response = await axios.get(
+      //   "https://api.escuelajs.co/api/v1/products"
+      // );
 
-      dispatch(setProductData(response?.data));
+      dispatch(setProductData(products));
     } catch (error) {
       dispatch(setProductData(products));
     }
@@ -25,7 +24,7 @@ const Home = () => {
   };
   useEffect(() => {
     fetchData();
-  });
+  }, []);
   const fakeStore = useSelector((state) => state.product.filterData);
   const { loading } = useSelector((state) => state.product);
 
