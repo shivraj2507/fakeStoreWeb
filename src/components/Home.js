@@ -24,7 +24,7 @@ const Home = () => {
       dispatch(setLoading());
     };
     fetchData();
-  }, []);
+  }, [dispatch]);
   const fakeStore = useSelector((state) => state.product.filterData);
   const { loading } = useSelector((state) => state.product);
 
