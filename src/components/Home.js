@@ -9,7 +9,7 @@ import { products } from "../data";
 const Home = () => {
   const dispatch = useDispatch();
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     dispatch(setLoading());
     try {
       // const response = await axios.get(
@@ -21,14 +21,14 @@ const Home = () => {
       dispatch(setProductData(products));
     }
     dispatch(setLoading());
-  };
- useEffect(() => {
-   const fetchDataAndUpdateProducts = async () => {
-     await fetchData();
-   };
+  }, []);
+  useEffect(() => {
+    const fetchDataAndUpdateProducts = async () => {
+      await fetchData();
+    };
 
-   fetchDataAndUpdateProducts();
- }, [fetchData]);
+    fetchDataAndUpdateProducts();
+  }, [fetchData]);
   const fakeStore = useSelector((state) => state.product.filterData);
   const { loading } = useSelector((state) => state.product);
 
